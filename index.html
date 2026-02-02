@@ -14,7 +14,7 @@
     <meta property="og:type" content="website">
 
      <!-- Favicon (Adicionado conforme pedido) -->
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/2875Bv7Z/1770055093519-019c1f80-6d68-7814-bbfd-b362ec71d6ed.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/d1qx0hwv/image.png">
     
     <title>Anildo Fontes | Reprogramação Emocional - Hipnólogo Clínico</title>
     
@@ -23,10 +23,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
+     <style>
         /* ========================================
            VARIÁVEIS CSS
-        ======================================== */
+           ======================================== */
         :root {
             --azul-marinho: #0a1628;
             --azul-marinho-light: #132238;
@@ -38,17 +38,13 @@
             --branco-soft: rgba(255, 255, 255, 0.95);
             --texto-claro: rgba(255, 255, 255, 0.85);
             --texto-muted: rgba(255, 255, 255, 0.6);
-            
             --font-display: 'Playfair Display', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            
             --container-max: 1200px;
             --header-height: 80px;
-            
             --transition-fast: 0.2s ease;
             --transition-normal: 0.3s ease;
             --transition-slow: 0.5s ease;
-            
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
             --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
             --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
@@ -57,7 +53,7 @@
 
         /* ========================================
            RESET & BASE
-        ======================================== */
+           ======================================== */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -86,7 +82,7 @@
 
         /* ========================================
            UTILITÁRIOS
-        ======================================== */
+           ======================================== */
         .container {
             width: 100%;
             max-width: var(--container-max);
@@ -98,12 +94,11 @@
         .section-dark { background: var(--azul-marinho); }
         .section-darker { background: var(--azul-marinho-dark); }
         .section-light { background: var(--azul-marinho-light); }
-
         .highlight { color: var(--dourado); }
 
         /* ========================================
            TEXTO COM SHINE DOURADO ANIMADO
-        ======================================== */
+           ======================================== */
         .text-shine {
             background: linear-gradient(
                 90deg,
@@ -127,7 +122,7 @@
 
         /* ========================================
            BARRA DE PROGRESSO
-        ======================================== */
+           ======================================== */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -148,7 +143,7 @@
 
         /* ========================================
            BOTÕES
-        ======================================== */
+           ======================================== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -239,7 +234,7 @@
 
         /* ========================================
            HEADER FIXO
-        ======================================== */
+           ======================================== */
         .header {
             position: fixed;
             top: 0;
@@ -313,7 +308,7 @@
 
         /* ========================================
            HERO
-        ======================================== */
+           ======================================== */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -430,7 +425,7 @@
 
         /* ========================================
            ANIMAÇÕES BASE
-        ======================================== */
+           ======================================== */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -464,7 +459,7 @@
 
         /* ========================================
            SEÇÃO SOBRE
-        ======================================== */
+           ======================================== */
         .sobre-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -614,7 +609,7 @@
 
         /* ========================================
            SEÇÃO PROBLEMAS
-        ======================================== */
+           ======================================== */
         .problemas-header {
             text-align: center;
             margin-bottom: 60px;
@@ -678,7 +673,7 @@
 
         /* ========================================
            SEÇÃO SERVIÇOS
-        ======================================== */
+           ======================================== */
         .servicos-header {
             text-align: center;
             margin-bottom: 60px;
@@ -744,7 +739,7 @@
 
         /* ========================================
            SEÇÃO VÍDEOS / BASTIDORES
-        ======================================== */
+           ======================================== */
         .videos-section {
             padding: 100px 0;
             background: var(--azul-marinho-dark);
@@ -808,22 +803,25 @@
 
         @media (min-width: 768px) { .video-slide { flex: 0 0 300px; } }
 
+        /* Video Wrapper para Vimeo */
         .video-wrapper {
             position: relative;
-            padding-top: 177.78%; /* 9:16 aspect ratio */
+            padding-top: 177.78%;
             background: #000;
             overflow: hidden;
         }
 
-        .video-wrapper video {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            border: none;
+            z-index: 1;
         }
 
+        /* Overlay de controle do vídeo */
         .video-overlay {
             position: absolute;
             inset: 0;
@@ -831,7 +829,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.3));
+            background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.30));
             z-index: 3;
             transition: opacity 0.3s ease;
         }
@@ -841,6 +839,7 @@
             pointer-events: none;
         }
 
+        /* Botão Play Estilizado */
         .video-play-btn {
             width: 70px;
             height: 70px;
@@ -862,6 +861,8 @@
             inset: -12px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent 60%);
+            opacity: 0.8;
+            pointer-events: none;
             animation: pulse-play 2s ease-in-out infinite;
         }
 
@@ -883,8 +884,10 @@
             border-top: 11px solid transparent;
             border-bottom: 11px solid transparent;
             transform: translateX(3px);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
+        /* Botões do Carrossel */
         .carrossel-btn {
             position: absolute;
             top: 50%;
@@ -958,7 +961,7 @@
 
         /* ========================================
            SEÇÃO DEPOIMENTOS
-        ======================================== */
+           ======================================== */
         .depoimentos-header {
             text-align: center;
             margin-bottom: 60px;
@@ -1043,7 +1046,7 @@
 
         /* ========================================
            SEÇÃO FAQ
-        ======================================== */
+           ======================================== */
         .faq-header {
             text-align: center;
             margin-bottom: 60px;
@@ -1086,7 +1089,6 @@
         }
 
         .faq-question:hover { color: var(--dourado); }
-
         .faq-question span { flex: 1; }
 
         .faq-icon {
@@ -1131,7 +1133,7 @@
 
         /* ========================================
            CTA FINAL
-        ======================================== */
+           ======================================== */
         .cta-final {
             padding: 120px 0;
             text-align: center;
@@ -1183,7 +1185,7 @@
 
         /* ========================================
            FOOTER
-        ======================================== */
+           ======================================== */
         .footer {
             background: var(--azul-marinho-dark);
             padding: 50px 0 30px;
@@ -1275,7 +1277,7 @@
 
         /* ========================================
            BOTÃO WHATSAPP FLUTUANTE
-        ======================================== */
+           ======================================== */
         .whatsapp-float {
             position: fixed;
             bottom: 24px;
@@ -1312,7 +1314,7 @@
 
         /* ========================================
            BOTÃO VOLTAR AO TOPO
-        ======================================== */
+           ======================================== */
         .back-to-top {
             position: fixed;
             bottom: 100px;
@@ -1353,7 +1355,7 @@
 
         /* ========================================
            MODAL DE FORMULÁRIO
-        ======================================== */
+           ======================================== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1542,7 +1544,7 @@
 
         /* ========================================
            RESPONSIVO
-        ======================================== */
+           ======================================== */
         @media (max-width: 480px) {
             .container { padding: 0 20px; }
             .section { padding: 70px 0; }
@@ -2130,13 +2132,14 @@
         </svg>
     </button>
 
-    <!-- JAVASCRIPT -->
+        <!-- JAVASCRIPT -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         // ========================================
         // BARRA DE PROGRESSO
         // ========================================
         const progressBar = document.getElementById('progressBar');
-        
+
         function updateProgressBar() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -2148,7 +2151,7 @@
         // HEADER SCROLL
         // ========================================
         const header = document.getElementById('header');
-        
+
         function updateHeader() {
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
@@ -2162,14 +2165,14 @@
         // ========================================
         const whatsappFloat = document.getElementById('whatsappFloat');
         const backToTop = document.getElementById('backToTop');
-        
+
         function updateFloatButtons() {
             if (window.scrollY > 400) {
                 whatsappFloat.classList.add('visible');
             } else {
                 whatsappFloat.classList.remove('visible');
             }
-            
+
             if (window.scrollY > 600) {
                 backToTop.classList.add('visible');
             } else {
@@ -2185,12 +2188,12 @@
         // REVEAL ON SCROLL (FADE IN)
         // ========================================
         const fadeElements = document.querySelectorAll('.fade-in');
-        
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -80px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2198,14 +2201,14 @@
                 }
             });
         }, observerOptions);
-        
+
         fadeElements.forEach(el => observer.observe(el));
 
         // ========================================
         // FAQ ACCORDION
         // ========================================
         const faqItems = document.querySelectorAll('.faq-item');
-        
+
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             question.addEventListener('click', () => {
@@ -2224,14 +2227,14 @@
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href === '#') return;
-                
+
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
                     const headerHeight = header.offsetHeight;
                     const elementPosition = target.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                    
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
@@ -2267,11 +2270,11 @@
         }
 
         modalClose.addEventListener('click', closeModal);
-        
+
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
-        
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
         });
@@ -2279,26 +2282,26 @@
         // Envio do formulário
         modalForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const btn = modalForm.querySelector('button[type="submit"]');
             const nomeInput = modalForm.querySelector('input[name="Nome"]');
             const nome = nomeInput.value.trim();
-            
+
             btn.disabled = true;
             btn.innerHTML = '<span>Enviando...</span>';
-            
+
             // Simula envio (aqui você pode integrar com Google Sheets ou outro backend)
             setTimeout(() => {
                 // Mostra sucesso
                 modalFormContainer.classList.add('hidden');
                 userName.textContent = nome;
                 modalSuccess.classList.add('active');
-                
+
                 // Redireciona pro Instagram após 3 segundos
                 setTimeout(() => {
                     window.open('https://instagram.com/anildofontesoficial', '_blank');
                     closeModal();
-                    
+
                     // Reset
                     setTimeout(() => {
                         modalForm.reset();
@@ -2361,51 +2364,88 @@
         }
 
         // ========================================
-        // CONTROLE DE VÍDEOS
+        // CONTROLE DE VÍDEO VIMEO
         // ========================================
-        const videos = document.querySelectorAll('.video-wrapper video');
-        const overlays = document.querySelectorAll('.video-overlay');
+        const iframes = ["vimeo1", "vimeo2", "vimeo3", "vimeo4"]
+            .map(id => document.getElementById(id))
+            .filter(Boolean);
 
-        function pauseAllVideos(exceptId = null) {
-            videos.forEach(video => {
-                if (video.id !== exceptId) {
-                    video.pause();
-                    video.muted = true;
-                    const overlay = document.querySelector(`[data-target="${video.id}"]`);
-                    if (overlay) overlay.classList.remove('hidden');
-                }
-            });
+        const players = iframes.map(iframe => new Vimeo.Player(iframe));
+        const videoOverlays = Array.from(document.querySelectorAll(".video-overlay"));
+
+        function setOverlayState(overlay, isPlaying) {
+            if (!overlay) return;
+            if (isPlaying) {
+                overlay.classList.add('hidden');
+            } else {
+                overlay.classList.remove('hidden');
+            }
         }
 
-        overlays.forEach(overlay => {
-            overlay.addEventListener('click', () => {
-                const targetId = overlay.dataset.target;
-                const video = document.getElementById(targetId);
-                
-                if (video.paused) {
-                    pauseAllVideos(targetId);
-                    video.muted = false;
-                    video.play();
-                    overlay.classList.add('hidden');
+        async function pauseAllVimeo(exceptIndex = -1) {
+            for (let i = 0; i < players.length; i++) {
+                if (i === exceptIndex) continue;
+                try { await players[i].pause(); } catch(e) {}
+                const ov = videoOverlays.find(o => o.dataset.target === iframes[i].id);
+                setOverlayState(ov, false);
+            }
+        }
+
+        async function togglePlayById(targetId) {
+            const idx = iframes.findIndex(f => f.id === targetId);
+            if (idx < 0) return;
+
+            const player = players[idx];
+            const overlay = videoOverlays.find(o => o.dataset.target === targetId);
+
+            try {
+                const paused = await player.getPaused();
+                if (paused) {
+                    await pauseAllVimeo(idx);
+                    try { await player.setMuted(false); } catch(e) {}
+                    try { await player.setVolume(1); } catch(e) {}
+                    await player.play();
+                    setOverlayState(overlay, true);
                 } else {
-                    video.pause();
-                    overlay.classList.remove('hidden');
+                    await player.pause();
+                    setOverlayState(overlay, false);
+                }
+            } catch(e) {
+                console.warn("Vimeo toggle error:", e);
+            }
+        }
+
+        videoOverlays.forEach(overlay => {
+            overlay.addEventListener("click", () => togglePlayById(overlay.dataset.target));
+            overlay.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    togglePlayById(overlay.dataset.target);
                 }
             });
         });
 
-        // Pausa vídeos quando sai da seção
-        if ("IntersectionObserver" in window) {
-            const videoSection = document.getElementById('videos');
-            const videoObserver = new IntersectionObserver((entries) => {
+        players.forEach((player, idx) => {
+            player.on("ended", () => {
+                const ov = videoOverlays.find(o => o.dataset.target === iframes[idx].id);
+                setOverlayState(ov, false);
+            });
+            // Inicia mutado
+            (async () => {
+                try { await player.pause(); } catch(e) {}
+                try { await player.setMuted(true); } catch(e) {}
+            })();
+        });
+
+        // Pausa ao sair da seção
+        const carrosselTrackVideos = document.getElementById('carrosselTrack');
+        if (carrosselTrackVideos && "IntersectionObserver" in window) {
+            const obs = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        pauseAllVideos();
-                    }
+                    if (!entry.isIntersecting) pauseAllVimeo(-1);
                 });
-            }, { threshold: 0.1 });
-            
-            if (videoSection) videoObserver.observe(videoSection);
+            }, { threshold: 0.2 });
+            obs.observe(carrosselTrackVideos);
         }
 
         // ========================================
