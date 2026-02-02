@@ -2417,89 +2417,113 @@
         }
 
         // ========================================
-        // CONTROLE DE VÍDEO VIMEO
-        // ========================================
-        const iframes = ["vimeo1", "vimeo2", "vimeo3", "vimeo4"]
-            .map(id => document.getElementById(id))
-            .filter(Boolean);
+// CONTROLE DE VÍDEO VIMEO (Custom Play/Pause + 1 por vez)
+// ========================================
+const vimeoIds = ["vimeo1", "vimeo2", "vimeo3", "vimeo4"];
 
-        const players = iframes.map(iframe => new Vimeo.Player(iframe));
-        const videoOverlays = Array.from(document.querySelectorAll(".video-overlay"));
+const vimeoIframes = vimeoIds
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
 
-        function setOverlayState(overlay, isPlaying) {
-            if (!overlay) return;
-            if (isPlaying) {
-                overlay.classList.add('hidden');
-            } else {
-                overlay.classList.remove('hidden');
-            }
-        }
+const vimeoPlayers = vimeoIframes.map(iframe => new Vimeo.Player(iframe));
+const overlays = Array.from(document.querySelectorAll(".video-overlay[data-target]"));
 
-        async function pauseAllVimeo(exceptIndex = -1) {
-            for (let i = 0; i < players.length; i++) {
-                if (i === exceptIndex) continue;
-                try { await players[i].pause(); } catch(e) {}
-                const ov = videoOverlays.find(o => o.dataset.target === iframes[i].id);
-                setOverlayState(ov, false);
-            }
-        }
+function getOverlayById(id) {
+  return overlays.find(o => o.dataset.target === id);
+}
 
-        async function togglePlayById(targetId) {
-            const idx = iframes.findIndex(f => f.id === targetId);
-            if (idx < 0) return;
+function setOverlayPlaying(targetId, isPlaying) {
+  const overlay = getOverlayById(targetId);
+  if (!overlay) return;
 
-            const player = players[idx];
-            const overlay = videoOverlays.find(o => o.dataset.target === targetId);
+  // Mantemos a classe "hidden" para reaproveitar seu CSS,
+  // mas (com o CSS override) o overlay continua clicável e invisível.
+  overlay.classList.toggle("hidden", isPlaying);
+  overlay.setAttribute("aria-label", isPlaying ? "Pausar vídeo" : "Reproduzir vídeo");
+}
 
-            try {
-                const paused = await player.getPaused();
-                if (paused) {
-                    await pauseAllVimeo(idx);
-                    try { await player.setMuted(false); } catch(e) {}
-                    try { await player.setVolume(1); } catch(e) {}
-                    await player.play();
-                    setOverlayState(overlay, true);
-                } else {
-                    await player.pause();
-                    setOverlayState(overlay, false);
-                }
-            } catch(e) {
-                console.warn("Vimeo toggle error:", e);
-            }
-        }
+async function pauseAll(exceptId = null) {
+  for (let i = 0; i < vimeoPlayers.length; i++) {
+    const iframeId = vimeoIframes[i].id;
+    if (iframeId === exceptId) continue;
 
-        videoOverlays.forEach(overlay => {
-            overlay.addEventListener("click", () => togglePlayById(overlay.dataset.target));
-            overlay.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    togglePlayById(overlay.dataset.target);
-                }
-            });
-        });
+    try { await vimeoPlayers[i].pause(); } catch (e) {}
+    setOverlayPlaying(iframeId, false);
+  }
+}
 
-        players.forEach((player, idx) => {
-            player.on("ended", () => {
-                const ov = videoOverlays.find(o => o.dataset.target === iframes[idx].id);
-                setOverlayState(ov, false);
-            });
-            // Inicia mutado
-            (async () => {
-                try { await player.pause(); } catch(e) {}
-                try { await player.setMuted(true); } catch(e) {}
-            })();
-        });
+async function toggleById(targetId) {
+  const idx = vimeoIframes.findIndex(f => f.id === targetId);
+  if (idx < 0) return;
 
-        // Pausa ao sair da seção
-        const carrosselTrackVideos = document.getElementById('carrosselTrack');
-        if (carrosselTrackVideos && "IntersectionObserver" in window) {
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) pauseAllVimeo(-1);
-                });
-            }, { threshold: 0.2 });
-            obs.observe(carrosselTrackVideos);
-        }
+  const player = vimeoPlayers[idx];
+
+  try {
+    const paused = await player.getPaused();
+
+    if (paused) {
+      await pauseAll(targetId);
+
+      // ao clicar, liga som e toca
+      try { await player.setMuted(false); } catch (e) {}
+      try { await player.setVolume(1); } catch (e) {}
+
+      await player.play();
+      setOverlayPlaying(targetId, true);
+    } else {
+      await player.pause();
+      setOverlayPlaying(targetId, false);
+    }
+  } catch (e) {
+    console.warn("Vimeo toggle error:", e);
+  }
+}
+
+// Clique / teclado no overlay
+overlays.forEach(overlay => {
+  const targetId = overlay.dataset.target;
+
+  overlay.addEventListener("click", () => toggleById(targetId));
+  overlay.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleById(targetId);
+    }
+  });
+});
+
+// Eventos do Vimeo para garantir estado correto do overlay
+vimeoPlayers.forEach((player, idx) => {
+  const id = vimeoIframes[idx].id;
+
+  player.on("play", async () => {
+    // segurança extra: só 1 tocando
+    await pauseAll(id);
+    setOverlayPlaying(id, true);
+  });
+
+  player.on("pause", () => setOverlayPlaying(id, false));
+  player.on("ended", () => setOverlayPlaying(id, false));
+
+  // inicia parado e mutado
+  (async () => {
+    try { await player.pause(); } catch (e) {}
+    try { await player.setMuted(true); } catch (e) {}
+  })();
+});
+
+// Pausa todos ao sair da área do carrossel (opcional, mas recomendado)
+const track = document.getElementById("carrosselTrack");
+if (track && "IntersectionObserver" in window) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) pauseAll(null);
+    });
+  }, { threshold: 0.2 });
+
+  obs.observe(track);
+}
+
 
         // ========================================
         // THROTTLE FUNCTION
