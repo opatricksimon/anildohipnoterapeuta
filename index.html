@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,11 +14,6 @@
     <meta property="og:type" content="website">
     
     <title>Anildo Fontes | Reprogramação Emocional - Hipnólogo Clínico</title>
-
-    <!-- Favicon -->
-
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/d1qx0hwv/image.png">
-<link rel="apple-touch-icon" href="https://i.postimg.cc/d1qx0hwv/image.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -743,7 +739,7 @@
             margin-top: 50px;
         }
 
-                /* ========================================
+        /* ========================================
            SEÇÃO VÍDEOS / BASTIDORES
         ======================================== */
         .videos-section {
@@ -809,25 +805,22 @@
 
         @media (min-width: 768px) { .video-slide { flex: 0 0 300px; } }
 
-        /* Video Wrapper para Vimeo */
         .video-wrapper {
             position: relative;
-            padding-top: 177.78%;
+            padding-top: 177.78%; /* 9:16 aspect ratio */
             background: #000;
             overflow: hidden;
         }
 
-        .video-wrapper iframe {
+        .video-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
-            z-index: 1;
+            object-fit: cover;
         }
 
-        /* Overlay de controle do vídeo */
         .video-overlay {
             position: absolute;
             inset: 0;
@@ -835,7 +828,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.30));
+            background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.3));
             z-index: 3;
             transition: opacity 0.3s ease;
         }
@@ -845,7 +838,6 @@
             pointer-events: none;
         }
 
-        /* Botão Play Estilizado */
         .video-play-btn {
             width: 70px;
             height: 70px;
@@ -867,8 +859,6 @@
             inset: -12px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent 60%);
-            opacity: 0.8;
-            pointer-events: none;
             animation: pulse-play 2s ease-in-out infinite;
         }
 
@@ -890,10 +880,8 @@
             border-top: 11px solid transparent;
             border-bottom: 11px solid transparent;
             transform: translateX(3px);
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
-        /* Botões do Carrossel */
         .carrossel-btn {
             position: absolute;
             top: 50%;
@@ -1834,7 +1822,7 @@
         </div>
     </section>
 
-        <!-- VÍDEOS / BASTIDORES -->
+    <!-- VÍDEOS / BASTIDORES -->
     <section class="videos-section" id="videos">
         <div class="container">
             <div class="videos-header fade-in">
@@ -1852,77 +1840,61 @@
             </button>
             
             <div class="carrossel-track" id="carrosselTrack">
-                <!-- Vídeo 1 -->
-<div class="video-slide">
-  <div class="video-wrapper">
-    <iframe
-      id="vimeo1"
-      loading="lazy"
-      src="https://player.vimeo.com/video/1161190477?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1"
-      allow="autoplay; fullscreen; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      frameborder="0"></iframe>
-
-    <div class="video-overlay" role="button" tabindex="0"
-      aria-label="Reproduzir/pausar vídeo" data-target="vimeo1">
-      <div class="video-play-btn"><span class="play-icon"></span></div>
-    </div>
-  </div>
-</div>
-
-<!-- Vídeo 2 -->
-<div class="video-slide">
-  <div class="video-wrapper">
-    <iframe
-      id="vimeo2"
-      loading="lazy"
-      src="https://player.vimeo.com/video/1161190507?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1"
-      allow="autoplay; fullscreen; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      frameborder="0"></iframe>
-
-    <div class="video-overlay" role="button" tabindex="0"
-      aria-label="Reproduzir/pausar vídeo" data-target="vimeo2">
-      <div class="video-play-btn"><span class="play-icon"></span></div>
-    </div>
-  </div>
-</div>
-
-<!-- Vídeo 3 -->
-<div class="video-slide">
-  <div class="video-wrapper">
-    <iframe
-      id="vimeo3"
-      loading="lazy"
-      src="https://player.vimeo.com/video/1161190559?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1"
-      allow="autoplay; fullscreen; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      frameborder="0"></iframe>
-
-    <div class="video-overlay" role="button" tabindex="0"
-      aria-label="Reproduzir/pausar vídeo" data-target="vimeo3">
-      <div class="video-play-btn"><span class="play-icon"></span></div>
-    </div>
-  </div>
-</div>
-
-<!-- Vídeo 4 -->
-<div class="video-slide">
-  <div class="video-wrapper">
-    <iframe
-      id="vimeo4"
-      loading="lazy"
-      src="https://player.vimeo.com/video/1161190600?badge=0&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1&keyboard=0&muted=1"
-      allow="autoplay; fullscreen; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      frameborder="0"></iframe>
-
-    <div class="video-overlay" role="button" tabindex="0"
-      aria-label="Reproduzir/pausar vídeo" data-target="vimeo4">
-      <div class="video-play-btn"><span class="play-icon"></span></div>
-    </div>
-  </div>
-</div>
+                <!-- Vídeo 1 - Placeholder -->
+                <div class="video-slide">
+                    <div class="video-wrapper">
+                        <video id="video1" src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4" playsinline loop></video>
+                        <div class="video-overlay" data-target="video1">
+                            <div class="video-play-btn">
+                                <span class="play-icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vídeo 2 -->
+                <div class="video-slide">
+                    <div class="video-wrapper">
+                        <video id="video2" src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4" playsinline loop></video>
+                        <div class="video-overlay" data-target="video2">
+                            <div class="video-play-btn">
+                                <span class="play-icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vídeo 3 -->
+                <div class="video-slide">
+                    <div class="video-wrapper">
+                        <video id="video3" src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4" playsinline loop></video>
+                        <div class="video-overlay" data-target="video3">
+                            <div class="video-play-btn">
+                                <span class="play-icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vídeo 4 -->
+                <div class="video-slide">
+                    <div class="video-wrapper">
+                        <video id="video4" src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4" playsinline loop></video>
+                        <div class="video-overlay" data-target="video4">
+                            <div class="video-play-btn">
+                                <span class="play-icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carrossel-btn carrossel-btn-next" aria-label="Próximo vídeo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
         
         <p class="carrossel-instrucao">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -2155,9 +2127,7 @@
     </button>
 
     <!-- JAVASCRIPT -->
-        <script src="https://player.vimeo.com/api/player.js"></script>
-    <script
-        
+    <script>
         // ========================================
         // BARRA DE PROGRESSO
         // ========================================
@@ -2387,88 +2357,51 @@
         }
 
         // ========================================
-        // CONTROLE DE VÍDEO VIMEO
+        // CONTROLE DE VÍDEOS
         // ========================================
-        const iframes = ["vimeo1", "vimeo2", "vimeo3", "vimeo4"]
-            .map(id => document.getElementById(id))
-            .filter(Boolean);
+        const videos = document.querySelectorAll('.video-wrapper video');
+        const overlays = document.querySelectorAll('.video-overlay');
 
-        const players = iframes.map(iframe => new Vimeo.Player(iframe));
-        const videoOverlays = Array.from(document.querySelectorAll(".video-overlay"));
-
-        function setOverlayState(overlay, isPlaying) {
-            if (!overlay) return;
-            if (isPlaying) {
-                overlay.classList.add('hidden');
-            } else {
-                overlay.classList.remove('hidden');
-            }
+        function pauseAllVideos(exceptId = null) {
+            videos.forEach(video => {
+                if (video.id !== exceptId) {
+                    video.pause();
+                    video.muted = true;
+                    const overlay = document.querySelector(`[data-target="${video.id}"]`);
+                    if (overlay) overlay.classList.remove('hidden');
+                }
+            });
         }
 
-        async function pauseAllVimeo(exceptIndex = -1) {
-            for (let i = 0; i < players.length; i++) {
-                if (i === exceptIndex) continue;
-                try { await players[i].pause(); } catch(e) {}
-                const ov = videoOverlays.find(o => o.dataset.target === iframes[i].id);
-                setOverlayState(ov, false);
-            }
-        }
-
-        async function togglePlayById(targetId) {
-            const idx = iframes.findIndex(f => f.id === targetId);
-            if (idx < 0) return;
-
-            const player = players[idx];
-            const overlay = videoOverlays.find(o => o.dataset.target === targetId);
-
-            try {
-                const paused = await player.getPaused();
-                if (paused) {
-                    await pauseAllVimeo(idx);
-                    try { await player.setMuted(false); } catch(e) {}
-                    try { await player.setVolume(1); } catch(e) {}
-                    await player.play();
-                    setOverlayState(overlay, true);
+        overlays.forEach(overlay => {
+            overlay.addEventListener('click', () => {
+                const targetId = overlay.dataset.target;
+                const video = document.getElementById(targetId);
+                
+                if (video.paused) {
+                    pauseAllVideos(targetId);
+                    video.muted = false;
+                    video.play();
+                    overlay.classList.add('hidden');
                 } else {
-                    await player.pause();
-                    setOverlayState(overlay, false);
-                }
-            } catch(e) {
-                console.warn("Vimeo toggle error:", e);
-            }
-        }
-
-        videoOverlays.forEach(overlay => {
-            overlay.addEventListener("click", () => togglePlayById(overlay.dataset.target));
-            overlay.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    togglePlayById(overlay.dataset.target);
+                    video.pause();
+                    overlay.classList.remove('hidden');
                 }
             });
         });
 
-        players.forEach((player, idx) => {
-            player.on("ended", () => {
-                const ov = videoOverlays.find(o => o.dataset.target === iframes[idx].id);
-                setOverlayState(ov, false);
-            });
-            // Inicia mutado
-            (async () => {
-                try { await player.pause(); } catch(e) {}
-                try { await player.setMuted(true); } catch(e) {}
-            })();
-        });
-
-        // Pausa ao sair da seção
-        const carrosselTrackVideos = document.getElementById('carrosselTrack');
-        if (carrosselTrackVideos && "IntersectionObserver" in window) {
-            const obs = new IntersectionObserver((entries) => {
+        // Pausa vídeos quando sai da seção
+        if ("IntersectionObserver" in window) {
+            const videoSection = document.getElementById('videos');
+            const videoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) pauseAllVimeo(-1);
+                    if (!entry.isIntersecting) {
+                        pauseAllVideos();
+                    }
                 });
-            }, { threshold: 0.2 });
-            obs.observe(carrosselTrackVideos);
+            }, { threshold: 0.1 });
+            
+            if (videoSection) videoObserver.observe(videoSection);
         }
 
         // ========================================
